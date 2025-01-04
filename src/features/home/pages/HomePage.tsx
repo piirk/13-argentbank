@@ -3,14 +3,15 @@ import NavBar from '../../../common/components/NavBar'
 import Hero from '../../../common/components/Hero'
 import Features from '../../../common/components/Features'
 import Footer from '../../../common/components/Footer'
+import Layout from '../../../common/components/Layout'
 
 const HomePage = () => {
   return (
     <div>
-      <NavBar />
-      <Hero />
-      <Features />
-      <Footer />
+      <Layout>
+        <Hero />
+        <Features />
+      </Layout>
     </div>
   )
 }
