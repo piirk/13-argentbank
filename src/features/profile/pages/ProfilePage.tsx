@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
-import NavBar from '../../../common/components/NavBar'
-import Footer from '../../../common/components/Footer'
-import AccountSection from '../components/AccountSection' // Mise à jour de l'import
+import AccountSection from '../components/AccountSection'
 import Layout from '../../../common/components/Layout'
 
 const ProfilePage = () => {

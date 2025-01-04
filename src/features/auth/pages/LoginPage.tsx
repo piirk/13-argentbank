@@ -1,6 +1,4 @@
 import React, { useState } from 'react'
-import NavBar from '../../../common/components/NavBar'
-import Footer from '../../../common/components/Footer'
 import Layout from '../../../common/components/Layout'
 
 const LoginPage = () => {

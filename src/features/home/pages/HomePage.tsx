@@ -1,8 +1,6 @@
 import React from 'react'
-import NavBar from '../../../common/components/NavBar'
-import Hero from '../../../common/components/Hero'
-import Features from '../../../common/components/Features'
-import Footer from '../../../common/components/Footer'
+import Hero from '../components/Hero'
+import Features from '../components/Features'
 import Layout from '../../../common/components/Layout'
 
 const HomePage = () => {
