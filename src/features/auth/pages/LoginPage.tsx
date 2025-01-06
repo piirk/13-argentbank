@@ -1,22 +1,14 @@
 import React, { useState } from 'react'
 import Layout from '../../../common/components/Layout'
+import { Form, Input, Button, Checkbox } from 'antd'
 
 const LoginPage = () => {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-  const [rememberMe, setRememberMe] = useState(false)
+  const onFinish = (values: any) => {
+    console.log('Success:', values)
+  }
 
-  const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault()
-
-    console.log(
-      'Username:',
-      username,
-      'Password:',
-      password,
-      'Remember Me:',
-      rememberMe,
-    )
+  const onFinishFailed = (errorInfo: any) => {
+    console.log('Failed:', errorInfo)
   }
 
   return (
@@ -24,41 +16,39 @@ const LoginPage = () => {
       <section className="sign-in-content">
         <i className="fa fa-user-circle sign-in-icon"></i>
         <h1>Sign In</h1>
-        <form onSubmit={handleSubmit}>
-          <div className="input-wrapper">
-            <label htmlFor="username">Username</label>
-            <input
-              type="text"
-              id="username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
-          </div>
-          <div className="input-wrapper">
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-          <div className="input-remember">
-            <input
-              type="checkbox"
-              id="remember-me"
-              checked={rememberMe}
-              onChange={(e) => setRememberMe(e.target.checked)}
-            />
-            <label htmlFor="remember-me">Remember me</label>
-          </div>
-          {/* <Link to="/profile" className="sign-in-button">
+        <Form
+          name="login"
+          initialValues={{ remember: true }}
+          onFinish={onFinish}
+          onFinishFailed={onFinishFailed}
+          layout="vertical" // Pour aligner les labels au-dessus des inputs
+        >
+          <Form.Item
+            label="Username"
+            name="username"
+            rules={[{ required: true, message: 'Please input your username!' }]}
+          >
+            <Input placeholder="Enter your username" />
+          </Form.Item>
+
+          <Form.Item
+            label="Password"
+            name="password"
+            rules={[{ required: true, message: 'Please input your password!' }]}
+          >
+            <Input.Password placeholder="Enter your password" />
+          </Form.Item>
+
+          <Form.Item name="remember" valuePropName="checked">
+            <Checkbox>Remember me</Checkbox>
+          </Form.Item>
+
+          <Form.Item>
+            <Button block type="primary" htmlType="submit" color="green">
               Sign In
-            </Link> */}
-          <button className="sign-in-button" type="submit">
-            Sign In
-          </button>
-        </form>
+            </Button>
+          </Form.Item>
+        </Form>
       </section>
     </Layout>
   )
