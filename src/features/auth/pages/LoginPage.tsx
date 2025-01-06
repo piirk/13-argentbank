@@ -20,7 +20,7 @@ const LoginPage = () => {
           initialValues={{ remember: true }}
           onFinish={onFinish}
           onFinishFailed={onFinishFailed}
-          layout="vertical" // Pour aligner les labels au-dessus des inputs
+          layout="vertical"
         >
           <Form.Item
             label="Username"
@@ -43,7 +43,14 @@ const LoginPage = () => {
           </Form.Item>
 
           <Form.Item>
-            <Button block type="primary" htmlType="submit" color="green">
+            <Button
+              block
+              type="primary"
+              htmlType="submit"
+              color="green"
+              style={{ fontWeight: 'bold' }}
+              size="large"
+            >
               Sign In
             </Button>
           </Form.Item>
