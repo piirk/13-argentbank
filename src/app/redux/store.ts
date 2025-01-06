@@ -1,20 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
-
-let state = {
-  value: null,
-}
-
-const reducer = (
-  currentState: typeof state = state,
-  action: { type: string },
-) => {
-  switch (action.type) {
-    default:
-      return currentState
-  }
-}
+import authReducer from '@features/auth/redux/authSlice'
 
 export const store = configureStore({
-  preloadedState: state,
-  reducer,
+  reducer: {
+    auth: authReducer,
+  },
 })
+
+export type RootState = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch
