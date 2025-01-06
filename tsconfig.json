@@ -15,7 +15,8 @@
       "@components/*": ["src/common/components/*"],
       "@features/*": ["src/features/*"],
       "@assets/*": ["src/assets/*"],
-      "@redux/*": ["src/app/redux/*"]
+      "@redux/*": ["src/app/redux/*"],
+      "@services/*": ["src/services/*"]
     }
   },
   "include": ["./src/**/*.ts", "./src/**/*.tsx"],
