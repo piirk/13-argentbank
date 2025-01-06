@@ -1,3 +1,5 @@
+import { Button } from 'antd'
+
 interface AccountSectionProps {
   title: string
   amount: number
@@ -17,7 +19,15 @@ const AccountSection: React.FC<AccountSectionProps> = ({
         <p className="account-amount-description">{description}</p>
       </div>
       <div className="account-content-wrapper cta">
-        <button className="transaction-button">View transactions</button>
+        <Button
+          block
+          type="primary"
+          htmlType="submit"
+          style={{ fontWeight: 'bold' }}
+          size="large"
+        >
+          View transactions
+        </Button>
       </div>
     </section>
   )

@@ -47,7 +47,6 @@ const LoginPage = () => {
               block
               type="primary"
               htmlType="submit"
-              color="green"
               style={{ fontWeight: 'bold' }}
               size="large"
             >

@@ -1,10 +1,12 @@
 import { useState } from 'react'
+import { Button, Input } from 'antd'
 import AccountSection from '@features/profile/components/AccountSection'
 import Layout from '@components/Layout'
 
 const ProfilePage = () => {
   const [isEditing, setIsEditing] = useState(false)
-  const [username, setUsername] = useState('Tony Jarvis')
+  const [firstName, setFirstName] = useState('Tony')
+  const [lastName, setLastName] = useState('Jarvis')
 
   const handleEditClick = () => {
     setIsEditing(true)
@@ -12,7 +14,13 @@ const ProfilePage = () => {
 
   const handleSaveClick = () => {
     setIsEditing(false)
-    console.log('Nom mis à jour:', username)
+    console.log('Nom mis à jour:', firstName, lastName)
+  }
+
+  const handleCancelClick = () => {
+    setIsEditing(false)
+    // setFirstName('Tony')
+    // setLastName('Jarvis')
   }
 
   return (
@@ -21,24 +29,64 @@ const ProfilePage = () => {
         <h1>
           Welcome back
           <br />
-          {username}!
+          {firstName} {lastName}!
         </h1>
         {isEditing ? (
           <>
-            <input
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              className="edit-input"
-            />
-            <button onClick={handleSaveClick} className="edit-button">
-              Save Name
-            </button>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                gap: '10px',
+                marginBottom: '1rem',
+              }}
+            >
+              <Input
+                placeholder="First Name"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                style={{ width: '25%' }}
+              />
+              <Input
+                placeholder="Last Name"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                style={{ width: '25%' }}
+              />
+            </div>
+            <div
+              style={{ display: 'flex', justifyContent: 'center', gap: '10px' }}
+            >
+              <Button
+                type="primary"
+                htmlType="submit"
+                style={{ fontWeight: 'bold', width: '10%' }}
+                size="large"
+                onClick={handleSaveClick}
+              >
+                Save
+              </Button>
+              <Button
+                type="default"
+                htmlType="button"
+                style={{ width: '10%' }}
+                size="large"
+                onClick={handleCancelClick}
+              >
+                Cancel
+              </Button>
+            </div>
           </>
         ) : (
-          <button onClick={handleEditClick} className="edit-button">
+          <Button
+            type="primary"
+            htmlType="submit"
+            style={{ fontWeight: 'bold' }}
+            size="large"
+            onClick={handleEditClick}
+          >
             Edit Name
-          </button>
+          </Button>
         )}
       </div>
 
