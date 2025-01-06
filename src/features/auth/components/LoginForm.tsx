@@ -13,6 +13,7 @@ interface LoginFormValues {
 const LoginForm = () => {
   const dispatch = useDispatch<AppDispatch>()
   const navigate = useNavigate()
+  const [messageApi, contextHolder] = message.useMessage()
 
   const onFinish = async (values: LoginFormValues) => {
     try {
@@ -25,10 +26,10 @@ const LoginForm = () => {
       if (login.fulfilled.match(actionResult)) {
         navigate('/profile')
       } else {
-        message.error('Login failed. Please check your credentials.')
+        messageApi.error('Login failed. Please check your credentials.')
       }
     } catch (error) {
-      message.error('An error occurred while logging in.')
+      messageApi.error('An error occurred while logging in.')
     }
   }
 
@@ -37,48 +38,51 @@ const LoginForm = () => {
   }
 
   return (
-    <Form
-      name="login"
-      initialValues={{ remember: true }}
-      onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
-      layout="vertical"
-    >
-      <Form.Item
-        label="Email"
-        name="email"
-        rules={[
-          { required: true, message: 'Please input your email!' },
-          { type: 'email', message: 'Please enter a valid email!' },
-        ]}
+    <>
+      {contextHolder}
+      <Form
+        name="login"
+        initialValues={{ remember: true }}
+        onFinish={onFinish}
+        onFinishFailed={onFinishFailed}
+        layout="vertical"
       >
-        <Input placeholder="Enter your email" />
-      </Form.Item>
-
-      <Form.Item
-        label="Password"
-        name="password"
-        rules={[{ required: true, message: 'Please input your password!' }]}
-      >
-        <Input.Password placeholder="Enter your password" />
-      </Form.Item>
-
-      <Form.Item name="remember" valuePropName="checked">
-        <Checkbox>Remember me</Checkbox>
-      </Form.Item>
-
-      <Form.Item>
-        <Button
-          block
-          type="primary"
-          htmlType="submit"
-          style={{ fontWeight: 'bold' }}
-          size="large"
+        <Form.Item
+          label="Email"
+          name="email"
+          rules={[
+            { required: true, message: 'Please input your email!' },
+            { type: 'email', message: 'Please enter a valid email!' },
+          ]}
         >
-          Sign In
-        </Button>
-      </Form.Item>
-    </Form>
+          <Input placeholder="Enter your email" />
+        </Form.Item>
+
+        <Form.Item
+          label="Password"
+          name="password"
+          rules={[{ required: true, message: 'Please input your password!' }]}
+        >
+          <Input.Password placeholder="Enter your password" />
+        </Form.Item>
+
+        <Form.Item name="remember" valuePropName="checked">
+          <Checkbox>Remember me</Checkbox>
+        </Form.Item>
+
+        <Form.Item>
+          <Button
+            block
+            type="primary"
+            htmlType="submit"
+            style={{ fontWeight: 'bold' }}
+            size="large"
+          >
+            Sign In
+          </Button>
+        </Form.Item>
+      </Form>
+    </>
   )
 }
 
