@@ -2,6 +2,7 @@ import { useDispatch } from 'react-redux'
 import { AppDispatch } from '@redux/store'
 import { login } from '../redux/authActions'
 import { Form, Input, Checkbox, Button } from 'antd'
+import { useNavigate } from 'react-router-dom'
 
 interface LoginFormValues {
   email: string
@@ -11,13 +12,16 @@ interface LoginFormValues {
 
 const LoginForm = () => {
   const dispatch = useDispatch<AppDispatch>()
+  const navigate = useNavigate()
 
   const onFinish = (values: LoginFormValues) => {
     const userData = {
       email: values.email,
       password: values.password,
     }
-    dispatch(login(userData)) // Action de login
+    dispatch(login(userData)).then(() => {
+      navigate('/profile')
+    })
   }
 
   const onFinishFailed = (errorInfo: any) => {
