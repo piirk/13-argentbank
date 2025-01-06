@@ -1,22 +1,17 @@
-import { Dispatch } from 'redux'
+import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
-import { setUser, logout } from './authSlice'
-import { API_URL } from '@/config'
 
-// Login action
-export const login =
-  (userData: { email: string; password: string }) =>
-  async (dispatch: Dispatch) => {
+export const login = createAsyncThunk(
+  'auth/login',
+  async (
+    userData: { email: string; password: string },
+    { rejectWithValue },
+  ) => {
     try {
-      const response = await axios.post(`${API_URL}/user/login`, userData)
-      dispatch(setUser(response.data))
-    } catch (error) {
-      console.error('Login failed', error)
-      // todo: handle error properly
+      const response = await axios.post('/api/v1/user/login', userData)
+      return response.data // Retourne les données de l'utilisateur ou du token
+    } catch (error: Error | any) {
+      return rejectWithValue(error.response?.data || 'Login failed') // Retourne l'erreur
     }
-  }
-
-// Logout action
-export const logoutUser = () => (dispatch: Dispatch) => {
-  dispatch(logout())
-}
+  },
+)

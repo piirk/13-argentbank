@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux'
 import { AppDispatch } from '@redux/store'
 import { login } from '../redux/authActions'
-import { Form, Input, Checkbox, Button } from 'antd'
+import { Form, Input, Checkbox, Button, message } from 'antd'
 import { useNavigate } from 'react-router-dom'
 
 interface LoginFormValues {
@@ -14,14 +14,22 @@ const LoginForm = () => {
   const dispatch = useDispatch<AppDispatch>()
   const navigate = useNavigate()
 
-  const onFinish = (values: LoginFormValues) => {
-    const userData = {
-      email: values.email,
-      password: values.password,
+  const onFinish = async (values: LoginFormValues) => {
+    try {
+      const userData = {
+        email: values.email,
+        password: values.password,
+      }
+      const actionResult = await dispatch(login(userData))
+
+      if (login.fulfilled.match(actionResult)) {
+        navigate('/profile')
+      } else {
+        message.error('Login failed. Please check your credentials.')
+      }
+    } catch (error) {
+      message.error('An error occurred while logging in.')
     }
-    dispatch(login(userData)).then(() => {
-      navigate('/profile')
-    })
   }
 
   const onFinishFailed = (errorInfo: any) => {
