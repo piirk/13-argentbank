@@ -1,5 +1,4 @@
-import React, { useState } from 'react'
-import Layout from '../../../common/components/Layout'
+import Layout from '@components/Layout'
 import { Form, Input, Button, Checkbox } from 'antd'
 
 const LoginPage = () => {

@@ -1,5 +1,3 @@
-import React from 'react'
-
 interface AccountSectionProps {
   title: string
   amount: number

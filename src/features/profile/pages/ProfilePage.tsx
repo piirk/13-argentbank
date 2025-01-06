@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
-import AccountSection from '../components/AccountSection'
-import Layout from '../../../common/components/Layout'
+import { useState } from 'react'
+import AccountSection from '@features/profile/components/AccountSection'
+import Layout from '@components/Layout'
 
 const ProfilePage = () => {
   const [isEditing, setIsEditing] = useState(false)

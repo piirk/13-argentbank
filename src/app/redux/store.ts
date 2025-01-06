@@ -4,7 +4,10 @@ let state = {
   value: null,
 }
 
-const reducer = (currentState, action) => {
+const reducer = (
+  currentState: typeof state = state,
+  action: { type: string },
+) => {
   switch (action.type) {
     default:
       return currentState

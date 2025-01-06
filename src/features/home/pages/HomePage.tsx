@@ -1,7 +1,6 @@
-import React from 'react'
-import Hero from '../components/Hero'
-import Features from '../components/Features'
-import Layout from '../../../common/components/Layout'
+import Hero from '@features/home/components/Hero'
+import Features from '@features/home/components/Features'
+import Layout from '@components/Layout'
 
 const HomePage = () => {
   return (
