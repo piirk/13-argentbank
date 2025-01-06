@@ -26,7 +26,7 @@ const LoginForm = () => {
       if (login.fulfilled.match(actionResult)) {
         navigate('/profile')
       } else {
-        messageApi.error('Login failed. Please check your credentials.')
+        messageApi.error(actionResult.payload as string)
       }
     } catch (error) {
       messageApi.error('An error occurred while logging in.')
