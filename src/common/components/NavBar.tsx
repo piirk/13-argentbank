@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import Logo from '@assets/img/argentBankLogo.png'
+import { Button } from 'antd'
 
 const NavBar = () => {
   return (
@@ -14,8 +15,13 @@ const NavBar = () => {
       </Link>
       <div>
         <Link className="main-nav-item" to="/login">
-          <i className="fa fa-user-circle"></i>
-          Sign In
+          <Button
+            type="text"
+            icon={<i className="fa fa-user-circle"></i>}
+            style={{ fontWeight: 'bold' }}
+          >
+            Sign In
+          </Button>
         </Link>
       </div>
     </nav>
