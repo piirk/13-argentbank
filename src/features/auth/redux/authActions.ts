@@ -14,20 +14,21 @@ export const login = createAsyncThunk(
     } catch (error: any) {
       if (axios.isAxiosError(error)) {
         if (error.response) {
-          if (error.response.status === 401) {
-            return rejectWithValue('Invalid email or password.')
-          } else if (error.response.status === 400) {
-            return rejectWithValue(
-              'Login failed. Please check your credentials.',
-            )
-          } else if (error.response.status === 403) {
-            return rejectWithValue('Forbidden. You do not have access.')
-          } else if (error.response.status === 404) {
-            return rejectWithValue('Resource not found.')
-          } else if (error.response.status === 500) {
-            return rejectWithValue('Internal server error.')
-          } else {
-            return rejectWithValue(error.response.data || 'Login failed')
+          switch (error.response.status) {
+            case 401:
+              return rejectWithValue('Invalid email or password.')
+            case 400:
+              return rejectWithValue(
+                'Login failed. Please check your credentials.',
+              )
+            case 403:
+              return rejectWithValue('403 - Forbidden. You do not have access.')
+            case 404:
+              return rejectWithValue('404 - Resource not found.')
+            case 500:
+              return rejectWithValue('500 - Internal server error.')
+            default:
+              return rejectWithValue(error.response.data || 'Login failed')
           }
         } else if (error.request) {
           return rejectWithValue('Network error. Unable to reach the server.')
