@@ -16,7 +16,6 @@ const LoginForm = () => {
   const navigate = useNavigate()
   const [messageApi, contextHolder] = message.useMessage()
   const [loading, setLoading] = useState(false)
-  const key = 'loginMessage'
 
   const onFinish = async (values: LoginFormValues) => {
     setLoading(true)
@@ -30,18 +29,10 @@ const LoginForm = () => {
       if (login.fulfilled.match(actionResult)) {
         navigate('/profile')
       } else {
-        messageApi.open({
-          key,
-          type: 'error',
-          content: actionResult.payload as string,
-        })
+        messageApi.error(actionResult.payload as string)
       }
     } catch (error) {
-      messageApi.open({
-        key,
-        type: 'error',
-        content: 'An error occurred. Please try again.',
-      })
+      messageApi.error('An error occurred. Please try again.')
     } finally {
       setLoading(false)
     }
