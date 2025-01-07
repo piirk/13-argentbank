@@ -3,6 +3,7 @@ import { AppDispatch } from '@redux/store'
 import { login } from '../redux/authActions'
 import { Form, Input, Checkbox, Button, message } from 'antd'
 import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
 
 interface LoginFormValues {
   email: string
@@ -14,8 +15,11 @@ const LoginForm = () => {
   const dispatch = useDispatch<AppDispatch>()
   const navigate = useNavigate()
   const [messageApi, contextHolder] = message.useMessage()
+  const [loading, setLoading] = useState(false)
+  const key = 'loginMessage'
 
   const onFinish = async (values: LoginFormValues) => {
+    setLoading(true)
     try {
       const userData = {
         email: values.email,
@@ -26,10 +30,20 @@ const LoginForm = () => {
       if (login.fulfilled.match(actionResult)) {
         navigate('/profile')
       } else {
-        messageApi.error(actionResult.payload as string)
+        messageApi.open({
+          key,
+          type: 'error',
+          content: actionResult.payload as string,
+        })
       }
     } catch (error) {
-      messageApi.error('An error occurred while logging in.')
+      messageApi.open({
+        key,
+        type: 'error',
+        content: 'An error occurred. Please try again.',
+      })
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -55,7 +69,7 @@ const LoginForm = () => {
             { type: 'email', message: 'Please enter a valid email!' },
           ]}
         >
-          <Input placeholder="Enter your email" />
+          <Input placeholder="Enter your email" disabled={loading} />
         </Form.Item>
 
         <Form.Item
@@ -63,11 +77,14 @@ const LoginForm = () => {
           name="password"
           rules={[{ required: true, message: 'Please input your password!' }]}
         >
-          <Input.Password placeholder="Enter your password" />
+          <Input.Password
+            placeholder="Enter your password"
+            disabled={loading}
+          />
         </Form.Item>
 
         <Form.Item name="remember" valuePropName="checked">
-          <Checkbox>Remember me</Checkbox>
+          <Checkbox disabled={loading}>Remember me</Checkbox>
         </Form.Item>
 
         <Form.Item>
@@ -77,6 +94,7 @@ const LoginForm = () => {
             htmlType="submit"
             style={{ fontWeight: 'bold' }}
             size="large"
+            loading={loading}
           >
             Sign In
           </Button>
