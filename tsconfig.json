@@ -5,6 +5,7 @@
     "allowJs": true,
     "jsx": "react-jsx",
     "strict": true,
+    "module": "ES2020",
     "moduleResolution": "node",
     "esModuleInterop": true,
     "skipLibCheck": true,
@@ -20,6 +21,6 @@
       "@/*": ["src/*"]
     }
   },
-  "include": ["./src/**/*.ts", "./src/**/*.tsx"],
+  "include": ["./src/**/*.ts", "./src/**/*.tsx", "vite-env.d.ts"],
   "exclude": ["node_modules"]
 }
