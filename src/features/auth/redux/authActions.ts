@@ -14,28 +14,25 @@ export const login = createAsyncThunk(
     } catch (error: any) {
       if (axios.isAxiosError(error)) {
         if (error.response) {
-          switch (error.response.status) {
-            case 401:
-              return rejectWithValue('Invalid email or password.')
-            case 400:
-              return rejectWithValue(
-                'Login failed. Please check your credentials.',
-              )
-            case 403:
-              return rejectWithValue('403 - Forbidden. You do not have access.')
-            case 404:
-              return rejectWithValue('404 - Resource not found.')
-            case 500:
-              return rejectWithValue('500 - Internal server error.')
-            default:
-              return rejectWithValue(error.response.data || 'Login failed')
+          const errorMessages: Record<number, string> = {
+            401: 'Invalid email or password.',
+            400: 'Login failed. Please check your credentials.',
+            403: '403 - Forbidden. You do not have access.',
+            404: '404 - Resource not found.',
+            500: '500 - Internal server error.',
           }
+
+          const errorMessage =
+            errorMessages[error.response.status] || 'Login failed'
+          return rejectWithValue(errorMessage)
         } else if (error.request) {
           return rejectWithValue('Network error. Unable to reach the server.')
         } else {
+          console.error('Request setup error:', error.message)
           return rejectWithValue('An error occurred while making the request.')
         }
       } else {
+        console.error('Unhandled error:', error)
         return rejectWithValue('An unknown error occurred.')
       }
     }
