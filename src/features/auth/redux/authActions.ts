@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
+import { setUser } from './authSlice'
 
 const API_URL = import.meta.env.VITE_API_URL
 
@@ -7,11 +8,26 @@ export const login = createAsyncThunk(
   'auth/login',
   async (
     userData: { email: string; password: string },
-    { rejectWithValue },
+    { dispatch, rejectWithValue },
   ) => {
     try {
-      const response = await axios.post(API_URL + '/user/login', userData)
-      return response.data
+      const loginResponse = await axios.post(API_URL + '/user/login', userData)
+      const { token } = loginResponse.data.body
+      localStorage.setItem('token', token)
+
+      const profileResponse = await axios.post(
+        API_URL + '/user/profile',
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      )
+      const user = profileResponse.data.body
+      dispatch(setUser(user))
+
+      return { user, token }
     } catch (error: any) {
       if (axios.isAxiosError(error)) {
         if (error.response) {

@@ -3,8 +3,9 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 // todo: use models
 interface User {
   id: string
-  name: string
   email: string
+  firstName: string
+  lastName: string
 }
 
 interface AuthState {
