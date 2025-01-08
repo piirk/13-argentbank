@@ -30,10 +30,16 @@ const NavBar = () => {
       <div>
         {user ? (
           <>
-            <Avatar style={{ marginRight: '10px' }} icon={<UserOutlined />} />
-            <span style={{ marginRight: '10px', fontWeight: 'bold' }}>
-              {user.firstName}
-            </span>
+            <Link to="/profile">
+              <Button
+                type="text"
+                icon={<i className="fa fa-user-circle"></i>}
+                style={{ fontWeight: 'bold' }}
+                size="large"
+              >
+                {user.firstName}
+              </Button>
+            </Link>
 
             <Button
               type="text"
