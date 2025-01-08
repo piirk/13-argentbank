@@ -1,10 +1,11 @@
 import { ConfigProvider } from 'antd'
-import { Provider } from 'react-redux'
-import { store } from '@redux/store'
+import { useDispatch } from 'react-redux'
+import { checkAuth } from '@features/auth/redux/authSlice'
 import Routes from './routes'
 import './App.css'
+import { useEffect } from 'react'
 
-function App() {
+const App = () => {
   return (
     <ConfigProvider
       theme={{
@@ -13,9 +14,7 @@ function App() {
         },
       }}
     >
-      <Provider store={store}>
-        <Routes />
-      </Provider>
+      <Routes />
     </ConfigProvider>
   )
 }
