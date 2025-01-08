@@ -1,12 +1,13 @@
 import { ConfigProvider } from 'antd'
 import { useDispatch } from 'react-redux'
+import { AppDispatch } from '@redux/store'
 import { checkAuth } from '@features/auth/redux/authSlice'
 import Routes from './routes'
 import './App.css'
 import { useEffect } from 'react'
 
 const App = () => {
-  const dispatch = useDispatch()
+  const dispatch: AppDispatch = useDispatch()
 
   useEffect(() => {
     dispatch(checkAuth())
