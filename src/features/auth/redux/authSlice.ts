@@ -1,6 +1,6 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit'
+import axiosInstance from '@services/axiosConfig'
 
-// todo: use models
 interface User {
   id: string
   email: string
@@ -16,6 +16,23 @@ const initialState: AuthState = {
   user: null,
 }
 
+export const checkAuth = createAsyncThunk(
+  'auth/checkAuth',
+  async (_, { rejectWithValue }) => {
+    const token = localStorage.getItem('token')
+    if (token) {
+      try {
+        const response = await axiosInstance.post('/user/profile', {})
+        return response.data.body
+      } catch (error) {
+        return rejectWithValue('Failed to fetch user')
+      }
+    } else {
+      return rejectWithValue('No token found')
+    }
+  },
+)
+
 const authSlice = createSlice({
   name: 'auth',
   initialState,
@@ -25,9 +42,20 @@ const authSlice = createSlice({
     },
     logout(state) {
       state.user = null
+      localStorage.removeItem('token')
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(checkAuth.fulfilled, (state, action) => {
+      state.user = action.payload
+    })
+    builder.addCase(checkAuth.rejected, (state) => {
+      state.user = null
+      state.token = null
+      localStorage.removeItem('token')
+    })
   },
 })
 
-export const { setUser, logout, checkAuth } = authSlice.actions
+export const { setUser, logout } = authSlice.actions
 export default authSlice.reducer

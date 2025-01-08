@@ -6,6 +6,12 @@ import './App.css'
 import { useEffect } from 'react'
 
 const App = () => {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(checkAuth())
+  }, [dispatch])
+
   return (
     <ConfigProvider
       theme={{
