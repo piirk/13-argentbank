@@ -1,7 +1,8 @@
 // filepath: /src/common/components/NavBar.tsx
 import { Link, useNavigate } from 'react-router-dom'
 import Logo from '@assets/img/argentBankLogo.png'
-import { Button } from 'antd'
+import { Button, Avatar } from 'antd'
+import { UserOutlined } from '@ant-design/icons'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '@redux/store'
 import { logout } from '@features/auth/redux/authSlice'
@@ -28,20 +29,29 @@ const NavBar = () => {
       </Link>
       <div>
         {user ? (
-          <Button
-            type="text"
-            icon={<i className="fa fa-sign-out"></i>}
-            style={{ fontWeight: 'bold' }}
-            onClick={handleLogout}
-          >
-            Log Out
-          </Button>
+          <>
+            <Avatar style={{ marginRight: '10px' }} icon={<UserOutlined />} />
+            <span style={{ marginRight: '10px', fontWeight: 'bold' }}>
+              {user.firstName}
+            </span>
+
+            <Button
+              type="text"
+              icon={<i className="fa fa-sign-out"></i>}
+              style={{ fontWeight: 'bold' }}
+              size="large"
+              onClick={handleLogout}
+            >
+              Log Out
+            </Button>
+          </>
         ) : (
           <Link className="main-nav-item" to="/login">
             <Button
               type="text"
               icon={<i className="fa fa-user-circle"></i>}
               style={{ fontWeight: 'bold' }}
+              size="large"
             >
               Sign In
             </Button>
