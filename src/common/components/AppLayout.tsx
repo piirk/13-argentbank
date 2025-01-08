@@ -7,7 +7,7 @@ interface LayoutProps {
   mainClassName?: string
 }
 
-const Layout = ({ children, mainClassName }: LayoutProps) => {
+const AppLayout = ({ children, mainClassName }: LayoutProps) => {
   return (
     <div>
       <NavBar />
@@ -17,4 +17,4 @@ const Layout = ({ children, mainClassName }: LayoutProps) => {
   )
 }
 
-export default Layout
+export default AppLayout

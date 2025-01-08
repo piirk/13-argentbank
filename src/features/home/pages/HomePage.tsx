@@ -1,14 +1,14 @@
 import Hero from '@features/home/components/Hero'
 import Features from '@features/home/components/Features'
-import Layout from '@components/Layout'
+import AppLayout from '@common/components/AppLayout'
 
 const HomePage = () => {
   return (
     <div>
-      <Layout>
+      <AppLayout>
         <Hero />
         <Features />
-      </Layout>
+      </AppLayout>
     </div>
   )
 }

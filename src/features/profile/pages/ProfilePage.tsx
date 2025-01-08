@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import { Button, Input, message } from 'antd'
 import AccountSection from '@features/profile/components/AccountSection'
-import Layout from '@components/Layout'
+import AppLayout from '@common/components/AppLayout'
 import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from '@redux/store'
+import { RootState, AppDispatch } from '@redux/store'
 import { updateProfile } from '@features/auth/redux/authActions'
 
 const ProfilePage = () => {
-  const dispatch = useDispatch()
+  const dispatch: AppDispatch = useDispatch()
   const user = useSelector((state: RootState) => state.auth.user)
   const [isEditing, setIsEditing] = useState(false)
   const [firstName, setFirstName] = useState(user?.firstName || '')
@@ -39,7 +39,7 @@ const ProfilePage = () => {
   }
 
   return (
-    <Layout mainClassName="main bg-dark">
+    <AppLayout mainClassName="main bg-dark">
       {contextHolder}
       {user && (
         <>
@@ -130,7 +130,7 @@ const ProfilePage = () => {
           />
         </>
       )}
-    </Layout>
+    </AppLayout>
   )
 }
 
