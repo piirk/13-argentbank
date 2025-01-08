@@ -1,8 +1,21 @@
-import { Link } from 'react-router-dom'
+// filepath: /src/common/components/NavBar.tsx
+import { Link, useNavigate } from 'react-router-dom'
 import Logo from '@assets/img/argentBankLogo.png'
 import { Button } from 'antd'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from '@redux/store'
+import { logout } from '@features/auth/redux/authSlice'
 
 const NavBar = () => {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const user = useSelector((state: RootState) => state.auth.user)
+
+  const handleLogout = () => {
+    dispatch(logout())
+    navigate('/')
+  }
+
   return (
     <nav className="main-nav">
       <Link className="main-nav-logo" to="/">
@@ -14,15 +27,26 @@ const NavBar = () => {
         <h1 className="sr-only">Argent Bank</h1>
       </Link>
       <div>
-        <Link className="main-nav-item" to="/login">
+        {user ? (
           <Button
             type="text"
-            icon={<i className="fa fa-user-circle"></i>}
+            icon={<i className="fa fa-sign-out"></i>}
             style={{ fontWeight: 'bold' }}
+            onClick={handleLogout}
           >
-            Sign In
+            Log Out
           </Button>
-        </Link>
+        ) : (
+          <Link className="main-nav-item" to="/login">
+            <Button
+              type="text"
+              icon={<i className="fa fa-user-circle"></i>}
+              style={{ fontWeight: 'bold' }}
+            >
+              Sign In
+            </Button>
+          </Link>
+        )}
       </div>
     </nav>
   )
