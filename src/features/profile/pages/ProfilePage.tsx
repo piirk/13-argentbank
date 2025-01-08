@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react'
-import { Button, Input } from 'antd'
+import { useState } from 'react'
+import { Button, Input, message } from 'antd'
 import AccountSection from '@features/profile/components/AccountSection'
 import Layout from '@components/Layout'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '@redux/store'
-import { setUser } from '@features/auth/redux/authSlice'
+import { updateProfile } from '@features/auth/redux/authActions'
 
 const ProfilePage = () => {
   const dispatch = useDispatch()
@@ -12,6 +12,7 @@ const ProfilePage = () => {
   const [isEditing, setIsEditing] = useState(false)
   const [firstName, setFirstName] = useState(user?.firstName || '')
   const [lastName, setLastName] = useState(user?.lastName || '')
+  const [messageApi, contextHolder] = message.useMessage()
 
   const handleEditClick = () => {
     setIsEditing(true)
@@ -19,12 +20,16 @@ const ProfilePage = () => {
     setLastName(user?.lastName || '')
   }
 
-  const handleSaveClick = () => {
+  const handleSaveClick = async () => {
     setIsEditing(false)
     if (user) {
-      dispatch(setUser({ ...user, firstName, lastName }))
+      try {
+        await dispatch(updateProfile({ firstName, lastName })).unwrap()
+        messageApi.success('Profile updated successfully')
+      } catch (error) {
+        messageApi.error(error as string)
+      }
     }
-    console.log('Nom mis à jour:', firstName, lastName)
   }
 
   const handleCancelClick = () => {
@@ -35,6 +40,7 @@ const ProfilePage = () => {
 
   return (
     <Layout mainClassName="main bg-dark">
+      {contextHolder}
       {user && (
         <>
           <div className="header">
