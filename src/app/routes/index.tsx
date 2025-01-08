@@ -3,6 +3,7 @@ import HomePage from '@features/home/pages/HomePage'
 import LoginPage from '@features/auth/pages/LoginPage'
 import ProfilePage from '@features/profile/pages/ProfilePage'
 import PrivateRoute from './PrivateRoute'
+import Error404 from './Error404'
 
 const AppRoutes = () => {
   return (
@@ -12,6 +13,7 @@ const AppRoutes = () => {
       <Route element={<PrivateRoute />}>
         <Route path="/profile" element={<ProfilePage />} />
       </Route>
+      <Route path="*" element={<Error404 />} />
     </Routes>
   )
 }
