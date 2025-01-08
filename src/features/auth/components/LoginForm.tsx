@@ -29,7 +29,8 @@ const LoginForm = () => {
       if (login.fulfilled.match(actionResult)) {
         navigate('/profile')
       } else {
-        messageApi.error(actionResult.payload as string)
+        console.log(actionResult)
+        messageApi.error(actionResult.error.message as string)
       }
     } catch (error) {
       messageApi.error('An error occurred. Please try again.')
