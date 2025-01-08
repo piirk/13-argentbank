@@ -1,6 +1,9 @@
 import { ReactNode } from 'react'
+import { Layout } from 'antd'
 import NavBar from './NavBar'
 import Footer from './Footer'
+
+const { Content } = Layout
 
 interface LayoutProps {
   children: ReactNode
@@ -9,11 +12,11 @@ interface LayoutProps {
 
 const AppLayout = ({ children, mainClassName }: LayoutProps) => {
   return (
-    <div>
+    <Layout>
       <NavBar />
-      <main className={mainClassName || 'main'}>{children}</main>
+      <Content className={mainClassName || 'main'}>{children}</Content>
       <Footer />
-    </div>
+    </Layout>
   )
 }
 
