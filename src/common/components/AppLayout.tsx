@@ -1,7 +1,7 @@
 import { ReactNode } from 'react'
 import { Layout } from 'antd'
 import AppHeader from './AppHeader'
-import Footer from './Footer'
+import AppFooter from './AppFooter'
 
 const { Content } = Layout
 
@@ -15,7 +15,7 @@ const AppLayout = ({ children, mainClassName }: LayoutProps) => {
     <Layout>
       <AppHeader />
       <Content className={mainClassName || 'main'}>{children}</Content>
-      <Footer />
+      <AppFooter />
     </Layout>
   )
 }
