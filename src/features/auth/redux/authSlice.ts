@@ -10,10 +10,12 @@ interface User {
 
 interface AuthState {
   user: User | null
+  token: string | null
 }
 
 const initialState: AuthState = {
   user: null,
+  token: localStorage.getItem('token'),
 }
 
 export const checkAuth = createAsyncThunk(
@@ -39,9 +41,11 @@ const authSlice = createSlice({
   reducers: {
     setUser(state, action: PayloadAction<User>) {
       state.user = action.payload
+      state.token = localStorage.getItem('token')
     },
     logout(state) {
       state.user = null
+      state.token = null
       localStorage.removeItem('token')
     },
   },

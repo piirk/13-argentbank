@@ -10,13 +10,11 @@ import App from './app/App'
 const rootElement = document.getElementById('root')
 if (rootElement) {
   createRoot(rootElement).render(
-    <StrictMode>
-      <Provider store={store}>
-        <Router>
-          <App />
-        </Router>
-      </Provider>
-    </StrictMode>,
+    <Provider store={store}>
+      <Router>
+        <App />
+      </Router>
+    </Provider>,
   )
 } else {
   console.error('Failed to find the root element')
