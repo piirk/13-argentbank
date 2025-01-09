@@ -39,7 +39,7 @@ const ProfilePage = () => {
   }
 
   return (
-    <AppLayout mainClassName="main bg-dark">
+    <AppLayout>
       {contextHolder}
       {user && (
         <>
