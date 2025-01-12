@@ -1,6 +1,6 @@
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 import Logo from '@assets/img/argentBankLogo.png'
-import { Button, Layout, Menu } from 'antd'
+import { Button, Layout, Menu, Modal } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '@redux/store'
 import { logout } from '@redux/slices/authSlice'
@@ -16,14 +16,24 @@ const AppHeader = () => {
   const user = useSelector((state: RootState) => state.auth.user)
 
   const [current, setCurrent] = useState(location.pathname)
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   useEffect(() => {
     setCurrent(location.pathname)
   }, [location.pathname])
 
-  const handleLogout = () => {
+  const showLogoutConfirm = () => {
+    setIsModalOpen(true)
+  }
+
+  const handleOk = () => {
+    setIsModalOpen(false)
     dispatch(logout())
     navigate('/')
+  }
+
+  const handleCancel = () => {
+    setIsModalOpen(false)
   }
 
   type MenuItem = Required<MenuProps>['items'][number]
@@ -43,7 +53,7 @@ const AppHeader = () => {
           key: 'logout',
           icon: <i className="fa fa-sign-out"></i>,
           label: 'Log Out',
-          onClick: handleLogout,
+          onClick: showLogoutConfirm,
         },
       ]
     : [
@@ -82,6 +92,16 @@ const AppHeader = () => {
         mode="horizontal"
         disabledOverflow={true}
       />
+      <Modal
+        title="Confirm Logout"
+        open={isModalOpen}
+        onOk={handleOk}
+        onCancel={handleCancel}
+        okText="Yes, Logout"
+        cancelText="Cancel"
+      >
+        <p>Are you sure you want to log out?</p>
+      </Modal>
     </Header>
   )
 }
