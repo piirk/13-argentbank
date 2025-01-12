@@ -43,7 +43,7 @@ const ProfilePage = () => {
       {contextHolder}
       {user && (
         <>
-          <div className="header">
+          <div style={{ margin: '2rem 0' }}>
             <h1>
               Welcome back
               <br />
