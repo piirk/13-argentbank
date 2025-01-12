@@ -14,15 +14,26 @@ interface LoginFormValues {
 const LoginForm = () => {
   const dispatch = useDispatch<AppDispatch>()
   const navigate = useNavigate()
+  const [form] = Form.useForm()
+  const [rememberMe, setRememberMe] = useState(false)
   const [messageApi, contextHolder] = message.useMessage()
   const [loading, setLoading] = useState(false)
   const token = useSelector((state: RootState) => state.auth.token)
 
+  // Redirect to profile page if user is already logged in
   useEffect(() => {
     if (token) {
       navigate('/profile')
     }
   }, [token, navigate])
+
+  useEffect(() => {
+    const savedEmail = localStorage.getItem('rememberedEmail')
+    if (savedEmail) {
+      form.setFieldsValue({ email: savedEmail })
+      setRememberMe(true)
+    }
+  }, [form])
 
   const onFinish = async (values: LoginFormValues) => {
     setLoading(true)
@@ -33,13 +44,17 @@ const LoginForm = () => {
       }
       const actionResult = await dispatch(login(userData))
 
-      if (login.fulfilled.match(actionResult)) {
-        navigate('/profile')
+      if (rememberMe) {
+        localStorage.setItem('rememberedEmail', values.email)
       } else {
-        console.log(actionResult)
+        localStorage.removeItem('rememberedEmail')
+      }
+
+      if (!login.fulfilled.match(actionResult)) {
         messageApi.error(actionResult.error.message as string)
       }
     } catch (error) {
+      console.error('An error occurred:', error)
       messageApi.error('An error occurred. Please try again.')
     } finally {
       setLoading(false)
@@ -50,10 +65,15 @@ const LoginForm = () => {
     console.log('Failed:', errorInfo)
   }
 
+  const handleRememberMe = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setRememberMe(e.target.checked)
+  }
+
   return (
     <>
       {contextHolder}
       <Form
+        form={form}
         name="login"
         initialValues={{ remember: true }}
         onFinish={onFinish}
@@ -84,7 +104,13 @@ const LoginForm = () => {
         </Form.Item>
 
         <Form.Item name="remember" valuePropName="checked">
-          <Checkbox disabled={loading}>Remember me</Checkbox>
+          <Checkbox
+            checked={rememberMe}
+            onChange={handleRememberMe}
+            disabled={loading}
+          >
+            Remember me
+          </Checkbox>
         </Form.Item>
 
         <Form.Item>
