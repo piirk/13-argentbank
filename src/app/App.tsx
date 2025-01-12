@@ -1,7 +1,7 @@
 import { ConfigProvider } from 'antd'
 import { useDispatch } from 'react-redux'
 import { AppDispatch } from '@redux/store'
-import { checkAuth } from '@features/auth/redux/authSlice'
+import { checkAuth } from '@redux/slices/authSlice'
 import Routes from './routes'
 import './App.css'
 import { useEffect } from 'react'

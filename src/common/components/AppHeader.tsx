@@ -3,7 +3,7 @@ import Logo from '@assets/img/argentBankLogo.png'
 import { Button, Layout, Menu } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '@redux/store'
-import { logout } from '@features/auth/redux/authSlice'
+import { logout } from '@redux/slices/authSlice'
 import type { MenuProps } from 'antd'
 import { useState, useEffect } from 'react'
 

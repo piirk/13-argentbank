@@ -4,7 +4,7 @@ import AccountSection from '@features/profile/components/AccountSection'
 import AppLayout from '@common/components/AppLayout'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState, AppDispatch } from '@redux/store'
-import { updateProfile } from '@features/auth/redux/authActions'
+import { updateProfile } from '@redux/actions/authActions'
 
 const ProfilePage = () => {
   const dispatch: AppDispatch = useDispatch()

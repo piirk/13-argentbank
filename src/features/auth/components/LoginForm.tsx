@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux'
 import { AppDispatch } from '@redux/store'
-import { login } from '../redux/authActions'
+import { login } from '../../../app/redux/actions/authActions'
 import { Form, Input, Checkbox, Button, message } from 'antd'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
