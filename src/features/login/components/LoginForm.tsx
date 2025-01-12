@@ -52,6 +52,7 @@ const LoginForm = () => {
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         layout="vertical"
+        requiredMark={false}
       >
         <Form.Item
           label="Email"
