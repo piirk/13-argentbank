@@ -82,8 +82,7 @@ const ProfilePage = () => {
                   <Button
                     type="primary"
                     htmlType="submit"
-                    style={{ fontWeight: 'bold', width: '10%' }}
-                    size="large"
+                    style={{ width: '10%' }}
                     onClick={handleSaveClick}
                   >
                     Save
@@ -92,7 +91,6 @@ const ProfilePage = () => {
                     type="default"
                     htmlType="button"
                     style={{ width: '10%' }}
-                    size="large"
                     onClick={handleCancelClick}
                   >
                     Cancel
@@ -103,8 +101,6 @@ const ProfilePage = () => {
               <Button
                 type="primary"
                 htmlType="submit"
-                style={{ fontWeight: 'bold' }}
-                size="large"
                 onClick={handleEditClick}
               >
                 Edit Name

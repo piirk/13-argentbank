@@ -80,14 +80,7 @@ const LoginForm = () => {
         </Form.Item>
 
         <Form.Item>
-          <Button
-            block
-            type="primary"
-            htmlType="submit"
-            style={{ fontWeight: 'bold' }}
-            size="large"
-            loading={loading}
-          >
+          <Button block type="primary" htmlType="submit" loading={loading}>
             Sign In
           </Button>
         </Form.Item>

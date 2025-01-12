@@ -19,13 +19,7 @@ const AccountSection: React.FC<AccountSectionProps> = ({
         <p className="account-amount-description">{description}</p>
       </div>
       <div className="account-content-wrapper cta">
-        <Button
-          block
-          type="primary"
-          htmlType="submit"
-          style={{ fontWeight: 'bold' }}
-          size="large"
-        >
+        <Button block type="primary" htmlType="submit">
           View transactions
         </Button>
       </div>

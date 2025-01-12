@@ -153,11 +153,6 @@ body {
   margin-bottom: 0.5rem;
 }
 
-.sign-in-button {
-  background-color: #00bc77;
-  color: #fff;
-}
-
 .sign-in-content {
   box-sizing: border-box;
   background-color: white;
@@ -167,7 +162,7 @@ body {
   padding: 2rem;
 
   .ant-form-item-required:before {
-    display: none !important;
+    display: none;
   }
 }
 
