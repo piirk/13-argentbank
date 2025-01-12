@@ -1,9 +1,9 @@
-import { useDispatch } from 'react-redux'
+import { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch } from '@redux/store'
-import { login } from '../../../app/redux/actions/authActions'
+import { login } from '@redux/actions/authActions'
 import { Form, Input, Checkbox, Button, message } from 'antd'
 import { useNavigate } from 'react-router-dom'
-import { useState } from 'react'
 
 interface LoginFormValues {
   email: string
@@ -16,6 +16,13 @@ const LoginForm = () => {
   const navigate = useNavigate()
   const [messageApi, contextHolder] = message.useMessage()
   const [loading, setLoading] = useState(false)
+  const token = useSelector((state: RootState) => state.auth.token)
+
+  useEffect(() => {
+    if (token) {
+      navigate('/profile')
+    }
+  }, [token, navigate])
 
   const onFinish = async (values: LoginFormValues) => {
     setLoading(true)
