@@ -1,5 +1,5 @@
 import AppLayout from '@common/components/AppLayout'
-import LoginForm from '../components/LoginForm'
+import LoginForm from './components/LoginForm'
 
 const LoginPage = () => {
   return (

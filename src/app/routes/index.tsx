@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom'
-import HomePage from '@features/home/pages/HomePage'
-import LoginPage from '@features/auth/pages/LoginPage'
-import ProfilePage from '@features/profile/pages/ProfilePage'
+import HomePage from '@features/home/HomePage'
+import LoginPage from '@features/auth/LoginPage'
+import ProfilePage from '@features/profile/ProfilePage'
 import PrivateRoute from './PrivateRoute'
 import Error404 from './Error404'
 
