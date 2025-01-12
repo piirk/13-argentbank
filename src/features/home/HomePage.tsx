@@ -4,12 +4,10 @@ import AppLayout from '@common/components/AppLayout'
 
 const HomePage = () => {
   return (
-    <div>
-      <AppLayout>
-        <Hero />
-        <Features />
-      </AppLayout>
-    </div>
+    <AppLayout>
+      <Hero />
+      <Features />
+    </AppLayout>
   )
 }
 
