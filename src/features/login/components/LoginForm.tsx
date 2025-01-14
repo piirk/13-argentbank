@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { AppDispatch } from '@redux/store'
+import { AppDispatch, RootState } from '@redux/store'
 import { login } from '@redux/actions/authActions'
 import { Form, Input, Checkbox, Button, message } from 'antd'
 import { useNavigate } from 'react-router-dom'
+import { CheckboxChangeEvent } from 'antd/es/checkbox'
 
 interface LoginFormValues {
   email: string
@@ -15,7 +16,7 @@ const LoginForm = () => {
   const dispatch = useDispatch<AppDispatch>()
   const navigate = useNavigate()
   const [form] = Form.useForm()
-  const [rememberMe, setRememberMe] = useState(false)
+  const [rememberMe, setRememberMe] = useState(true)
   const [messageApi, contextHolder] = message.useMessage()
   const [loading, setLoading] = useState(false)
   const token = useSelector((state: RootState) => state.auth.token)
@@ -65,7 +66,7 @@ const LoginForm = () => {
     console.log('Failed:', errorInfo)
   }
 
-  const handleRememberMe = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleRememberMe = (e: CheckboxChangeEvent) => {
     setRememberMe(e.target.checked)
   }
 
