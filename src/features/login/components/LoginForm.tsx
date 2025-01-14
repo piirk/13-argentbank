@@ -5,6 +5,7 @@ import { login } from '@redux/actions/authActions'
 import { Form, Input, Checkbox, Button, message } from 'antd'
 import { useNavigate } from 'react-router-dom'
 import { CheckboxChangeEvent } from 'antd/es/checkbox'
+import { LockOutlined, UserOutlined } from '@ant-design/icons'
 
 interface LoginFormValues {
   email: string
@@ -83,22 +84,25 @@ const LoginForm = () => {
         requiredMark={false}
       >
         <Form.Item
-          label="Email"
           name="email"
           rules={[
             { required: true, message: 'Please input your email!' },
             { type: 'email', message: 'Please enter a valid email!' },
           ]}
         >
-          <Input placeholder="Enter your email" disabled={loading} />
+          <Input
+            prefix={<UserOutlined />}
+            placeholder="Enter your email"
+            disabled={loading}
+          />
         </Form.Item>
 
         <Form.Item
-          label="Password"
           name="password"
           rules={[{ required: true, message: 'Please input your password!' }]}
         >
           <Input.Password
+            prefix={<LockOutlined />}
             placeholder="Enter your password"
             disabled={loading}
           />
