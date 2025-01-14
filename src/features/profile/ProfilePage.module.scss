@@ -1,25 +1,6 @@
 .container {
   margin: 2rem 0;
-  text-align: center;
-}
-
-.inputContainer {
   display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 1rem;
-}
-
-.input {
-  width: 25%;
-}
-
-.buttonContainer {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-}
-
-.button {
-  width: 10%;
+  flex-direction: column;
+  gap: 1rem;
 }

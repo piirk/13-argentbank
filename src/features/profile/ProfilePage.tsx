@@ -1,11 +1,24 @@
 import { useState } from 'react'
-import { Button, Input, message } from 'antd'
+import {
+  Button,
+  Input,
+  message,
+  Form,
+  Typography,
+  Layout,
+  Row,
+  Col,
+  Space,
+} from 'antd'
 import AccountSection from '@features/profile/components/AccountSection/AccountSection'
 import AppLayout from '@common/components/AppLayout'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState, AppDispatch } from '@redux/store'
 import { updateProfile } from '@redux/actions/authActions'
 import styles from './ProfilePage.module.scss'
+
+const { Title } = Typography
+const { Content } = Layout
 
 const ProfilePage = () => {
   const dispatch: AppDispatch = useDispatch()
@@ -43,61 +56,71 @@ const ProfilePage = () => {
     <AppLayout>
       {contextHolder}
       {user && (
-        <>
-          <div className={styles.container}>
-            <h1>
-              Welcome back
-              <br />
-              {user.firstName} {user.lastName}!
-            </h1>
+        <Content className={styles.container}>
+          <Title level={1} align="center">
+            Welcome back
+            <br />
+            {user.firstName} {user.lastName}!
+          </Title>
+          <Row justify="center">
             {isEditing ? (
-              <>
-                <div className={styles.inputContainer}>
+              <Form layout="inline">
+                <Form.Item>
                   <Input
                     placeholder="First Name"
                     value={firstName}
                     onChange={(e) => setFirstName(e.target.value)}
                     className={styles.input}
                   />
+                </Form.Item>
+                <Form.Item>
                   <Input
                     placeholder="Last Name"
                     value={lastName}
                     onChange={(e) => setLastName(e.target.value)}
                     className={styles.input}
                   />
-                </div>
-                <div className={styles.buttonContainer}>
+                </Form.Item>
+                <Form.Item className={styles.buttonContainer}>
+                  <Space>
+                    <Button
+                      type="primary"
+                      htmlType="submit"
+                      className={styles.button}
+                      onClick={handleSaveClick}
+                    >
+                      Save
+                    </Button>
+                    <Button
+                      type="default"
+                      htmlType="button"
+                      className={styles.button}
+                      onClick={handleCancelClick}
+                    >
+                      Cancel
+                    </Button>
+                  </Space>
+                </Form.Item>
+              </Form>
+            ) : (
+              <Form layout="inline">
+                <Form.Item>
                   <Button
                     type="primary"
                     htmlType="submit"
-                    className={styles.button}
-                    onClick={handleSaveClick}
+                    onClick={handleEditClick}
+                    className={styles.editButton}
                   >
-                    Save
+                    Edit Name
                   </Button>
-                  <Button
-                    type="default"
-                    htmlType="button"
-                    className={styles.button}
-                    onClick={handleCancelClick}
-                  >
-                    Cancel
-                  </Button>
-                </div>
-              </>
-            ) : (
-              <Button
-                type="primary"
-                htmlType="submit"
-                onClick={handleEditClick}
-                className={styles.editButton}
-              >
-                Edit Name
-              </Button>
+                </Form.Item>
+              </Form>
             )}
-          </div>
+          </Row>
 
-          <h2 className="sr-only">Accounts</h2>
+          <Title level={2} className="sr-only">
+            Accounts
+          </Title>
           <AccountSection
             title="Argent Bank Checking (x8349)"
             amount={2082.79}
@@ -113,7 +136,7 @@ const ProfilePage = () => {
             amount={184.3}
             description="Current Balance"
           />
-        </>
+        </Content>
       )}
     </AppLayout>
   )
