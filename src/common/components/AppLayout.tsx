@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 import { Layout } from 'antd'
-import AppHeader from './AppHeader'
+import AppHeader from './AppHeader/AppHeader'
 import AppFooter from './AppFooter'
 
 const { Content } = Layout
