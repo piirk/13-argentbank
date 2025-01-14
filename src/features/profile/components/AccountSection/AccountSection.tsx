@@ -1,5 +1,7 @@
-import { Card, Button, Row, Col } from 'antd'
+import { Card, Button, Row, Col, Typography } from 'antd'
 import styles from './AccountSection.module.scss'
+
+const { Title } = Typography
 
 interface AccountSectionProps {
   title: string
@@ -13,11 +15,14 @@ const AccountSection: React.FC<AccountSectionProps> = ({
   description,
 }) => {
   return (
-    <Card className={styles.account} bordered={false}>
+    <Card
+      className={styles.account}
+      bordered={false}
+      title={<Title level={3}>{title}</Title>}
+    >
       <Row gutter={[16, 16]} align="middle">
         <Col xs={24} md={16}>
           <div className={styles.accountContentWrapper}>
-            <h3 className={styles.accountTitle}>{title}</h3>
             <p className={styles.accountAmount}>${amount.toLocaleString()}</p>
             <p className={styles.accountAmountDescription}>{description}</p>
           </div>

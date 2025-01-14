@@ -18,6 +18,11 @@ const App = () => {
         token: {
           colorPrimary: '#00bc77',
         },
+        components: {
+          Card: {
+            bodyPadding: 8,
+          },
+        },
       }}
     >
       <Routes />
