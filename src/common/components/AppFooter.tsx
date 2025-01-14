@@ -5,7 +5,7 @@ const { Footer } = Layout
 const AppFooter = () => {
   return (
     <Footer>
-      <p className="footer-text">
+      <p style={{ textAlign: 'center' }}>
         Copyright ©{new Date().getFullYear()} Argent Bank
       </p>
     </Footer>

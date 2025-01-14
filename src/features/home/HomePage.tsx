@@ -1,4 +1,4 @@
-import Hero from '@features/home/components/Hero'
+import Hero from '@features/home/components/Hero/Hero'
 import Features from '@features/home/components/Features'
 import AppLayout from '@common/components/AppLayout'
 
