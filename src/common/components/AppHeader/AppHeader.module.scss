@@ -1,0 +1,16 @@
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+}
+
+.navLogo {
+  display: flex;
+  align-items: center;
+}
+
+.navLogoImg {
+  max-width: 100%;
+  width: 200px;
+}

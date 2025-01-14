@@ -6,6 +6,7 @@ import { RootState } from '@redux/store'
 import { logout } from '@redux/slices/authSlice'
 import type { MenuProps } from 'antd'
 import { useState, useEffect } from 'react'
+import styles from './AppHeader.module.scss'
 
 const { Header } = Layout
 
@@ -70,20 +71,9 @@ const AppHeader = () => {
       ]
 
   return (
-    <Header
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        background: '#fff',
-      }}
-    >
-      <Link className="main-nav-logo" to="/">
-        <img
-          className="main-nav-logo-image"
-          src={Logo}
-          alt="Argent Bank Logo"
-        />
+    <Header className={styles.nav}>
+      <Link className={styles.navLogo} to="/">
+        <img className={styles.navLogoImg} src={Logo} alt="Argent Bank Logo" />
         <h1 className="sr-only">Argent Bank</h1>
       </Link>
       <Menu
