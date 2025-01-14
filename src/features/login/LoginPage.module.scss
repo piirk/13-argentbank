@@ -1,13 +1,14 @@
 .login {
-  box-sizing: border-box;
-  background-color: white;
-  width: 300px;
-  margin: 0 auto;
-  margin-top: 3rem;
+  max-width: 400px;
+  margin: 3rem auto 0;
   padding: 2rem;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
 
 .loginIcon {
-  font-size: 5rem;
+  font-size: 4rem;
+  margin-bottom: 1rem;
 }
