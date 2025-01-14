@@ -5,6 +5,7 @@ import AppLayout from '@common/components/AppLayout'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState, AppDispatch } from '@redux/store'
 import { updateProfile } from '@redux/actions/authActions'
+import styles from './ProfilePage.module.scss'
 
 const ProfilePage = () => {
   const dispatch: AppDispatch = useDispatch()
@@ -43,7 +44,7 @@ const ProfilePage = () => {
       {contextHolder}
       {user && (
         <>
-          <div style={{ margin: '2rem 0' }}>
+          <div className={styles.container}>
             <h1>
               Welcome back
               <br />
@@ -51,38 +52,25 @@ const ProfilePage = () => {
             </h1>
             {isEditing ? (
               <>
-                <div
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    gap: '10px',
-                    marginBottom: '1rem',
-                  }}
-                >
+                <div className={styles.inputContainer}>
                   <Input
                     placeholder="First Name"
                     value={firstName}
                     onChange={(e) => setFirstName(e.target.value)}
-                    style={{ width: '25%' }}
+                    className={styles.input}
                   />
                   <Input
                     placeholder="Last Name"
                     value={lastName}
                     onChange={(e) => setLastName(e.target.value)}
-                    style={{ width: '25%' }}
+                    className={styles.input}
                   />
                 </div>
-                <div
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    gap: '10px',
-                  }}
-                >
+                <div className={styles.buttonContainer}>
                   <Button
                     type="primary"
                     htmlType="submit"
-                    style={{ width: '10%' }}
+                    className={styles.button}
                     onClick={handleSaveClick}
                   >
                     Save
@@ -90,7 +78,7 @@ const ProfilePage = () => {
                   <Button
                     type="default"
                     htmlType="button"
-                    style={{ width: '10%' }}
+                    className={styles.button}
                     onClick={handleCancelClick}
                   >
                     Cancel
@@ -102,6 +90,7 @@ const ProfilePage = () => {
                 type="primary"
                 htmlType="submit"
                 onClick={handleEditClick}
+                className={styles.editButton}
               >
                 Edit Name
               </Button>
