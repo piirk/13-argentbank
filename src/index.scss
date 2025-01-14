@@ -12,19 +12,6 @@
   white-space: nowrap !important; /* 3 */
 }
 
-.sign-in-content {
-  box-sizing: border-box;
-  background-color: white;
-  width: 300px;
-  margin: 0 auto;
-  margin-top: 3rem;
-  padding: 2rem;
-}
-
-.sign-in-icon {
-  font-size: 5rem;
-}
-
 .account {
   display: flex;
   justify-content: space-between;
@@ -62,26 +49,6 @@
   flex: 1;
 }
 
-.edit-button {
-  border-color: #00bc77;
-  background-color: #00bc77;
-  color: #fff;
-  font-weight: bold;
-  padding: 10px;
-}
-
-.transaction-button {
-  display: block;
-  width: 100%;
-  padding: 8px;
-  font-size: 1.1rem;
-  font-weight: bold;
-  margin-top: 1rem;
-  border-color: #00bc77;
-  background-color: #00bc77;
-  color: #fff;
-}
-
 @media (min-width: 720px) {
   .account {
     flex-direction: row;
@@ -89,9 +56,5 @@
 
   .account-content-wrapper.cta {
     flex: 0;
-  }
-
-  .transaction-button {
-    width: 200px;
   }
 }
