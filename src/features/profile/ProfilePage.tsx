@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Button, Input, message } from 'antd'
-import AccountSection from '@features/profile/components/AccountSection'
+import AccountSection from '@features/profile/components/AccountSection/AccountSection'
 import AppLayout from '@common/components/AppLayout'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState, AppDispatch } from '@redux/store'
