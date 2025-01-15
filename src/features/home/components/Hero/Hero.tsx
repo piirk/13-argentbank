@@ -15,7 +15,7 @@ const Hero = () => {
         <Title level={4} style={{ margin: 0 }}>
           No minimum deposit.
         </Title>
-        <Title level={4} style={{ margin: 0 }}>
+        <Title level={4} style={{ margin: '0 0 0.5rem 0' }}>
           High interest rates.
         </Title>
         <Text>Open a savings account with Argent Bank today!</Text>
