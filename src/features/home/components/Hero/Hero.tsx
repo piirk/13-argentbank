@@ -1,17 +1,25 @@
+import { Layout, Typography, Row, Col } from 'antd'
 import styles from './Hero.module.scss'
+
+const { Content } = Layout
+const { Title, Text } = Typography
 
 const Hero = () => {
   return (
     <div className={styles.hero}>
-      <section className={styles.heroContent}>
+      <Content className={styles.heroContent}>
         <h2 className="sr-only">Promoted Content</h2>
-        <p className={styles.subtitle}>No fees.</p>
-        <p className={styles.subtitle}>No minimum deposit.</p>
-        <p className={styles.subtitle}>High interest rates.</p>
-        <p className={styles.text}>
-          Open a savings account with Argent Bank today!
-        </p>
-      </section>
+        <Title level={4} style={{ margin: 0 }}>
+          No fees.
+        </Title>
+        <Title level={4} style={{ margin: 0 }}>
+          No minimum deposit.
+        </Title>
+        <Title level={4} style={{ margin: 0 }}>
+          High interest rates.
+        </Title>
+        <Text>Open a savings account with Argent Bank today!</Text>
+      </Content>
     </div>
   )
 }
