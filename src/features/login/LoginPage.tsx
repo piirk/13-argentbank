@@ -1,4 +1,5 @@
 import { Layout, Typography } from 'antd'
+import UserOutlined from '@ant-design/icons/UserOutlined'
 import AppLayout from '@common/components/AppLayout'
 import LoginForm from './components/LoginForm'
 import styles from './LoginPage.module.scss'
@@ -10,7 +11,7 @@ const LoginPage = () => {
   return (
     <AppLayout>
       <Content className={styles.login}>
-        <i className={`fa fa-user-circle ${styles.loginIcon}`}></i>
+        <UserOutlined className={styles.loginIcon} />
         <Title level={1}>Sign In</Title>
         <LoginForm />
       </Content>
