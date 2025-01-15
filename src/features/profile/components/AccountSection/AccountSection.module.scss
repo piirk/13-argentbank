@@ -11,6 +11,12 @@
   margin-bottom: 1rem;
 }
 
+.accountTitle {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .accountAmount {
   font-size: 2rem;
   font-weight: bold;

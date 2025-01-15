@@ -18,7 +18,11 @@ const AccountSection: React.FC<AccountSectionProps> = ({
     <Card
       className={styles.account}
       bordered={false}
-      title={<Title level={3}>{title}</Title>}
+      title={
+        <Title level={3} className={styles.accountTitle}>
+          {title}
+        </Title>
+      }
     >
       <Row gutter={[16, 16]} align="middle">
         <Col xs={24} md={16}>
