@@ -1,13 +1,14 @@
-import { Layout } from 'antd'
+import { Layout, Typography } from 'antd'
 
 const { Footer } = Layout
+const { Text } = Typography
 
 const AppFooter = () => {
   return (
     <Footer>
-      <p style={{ textAlign: 'center' }}>
+      <Text style={{ textAlign: 'center' }}>
         Copyright ©{new Date().getFullYear()} Argent Bank
-      </p>
+      </Text>
     </Footer>
   )
 }
