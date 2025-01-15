@@ -66,7 +66,7 @@ const AppHeader = () => {
     : [
         {
           key: '/',
-          icon: <i className="fa fa-home"></i>,
+          icon: <HomeOutlined />,
           label: <Link to="/">Home</Link>,
         },
         {
