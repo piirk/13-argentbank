@@ -6,6 +6,12 @@ import { RootState } from '@redux/store'
 import { logout } from '@redux/slices/authSlice'
 import type { MenuProps } from 'antd'
 import { useState, useEffect } from 'react'
+import {
+  LoginOutlined,
+  LogoutOutlined,
+  UserOutlined,
+  HomeOutlined,
+} from '@ant-design/icons'
 import styles from './AppHeader.module.scss'
 
 const { Header } = Layout
@@ -42,17 +48,17 @@ const AppHeader = () => {
     ? [
         {
           key: '/',
-          icon: <i className="fa fa-home"></i>,
+          icon: <HomeOutlined />,
           label: <Link to="/">Home</Link>,
         },
         {
           key: '/profile',
-          icon: <i className="fa fa-user"></i>,
+          icon: <UserOutlined />,
           label: <Link to="/profile">{user.firstName}</Link>,
         },
         {
           key: 'logout',
-          icon: <i className="fa fa-sign-out"></i>,
+          icon: <LogoutOutlined />,
           label: 'Log Out',
           onClick: showLogoutConfirm,
         },
@@ -65,8 +71,35 @@ const AppHeader = () => {
         },
         {
           key: '/login',
-          icon: <i className="fa fa-sign-in"></i>,
+          icon: <LoginOutlined />,
           label: <Link to="/login">Sign In</Link>,
+        },
+      ]
+
+  const itemsMobile = user
+    ? [
+        {
+          key: '/',
+          icon: <HomeOutlined />,
+        },
+        {
+          key: '/profile',
+          icon: <UserOutlined />,
+        },
+        {
+          key: 'logout',
+          icon: <LogoutOutlined />,
+          onClick: showLogoutConfirm,
+        },
+      ]
+    : [
+        {
+          key: '/',
+          icon: <HomeOutlined />,
+        },
+        {
+          key: '/login',
+          icon: <LoginOutlined />,
         },
       ]
 
@@ -81,7 +114,33 @@ const AppHeader = () => {
         items={items}
         mode="horizontal"
         disabledOverflow={true}
+        className={styles.desktopMenu}
       />
+      <ul className={styles.mobileMenu}>
+        {itemsMobile.map(
+          (item) =>
+            item && (
+              <li key={item.key}>
+                {item.key === 'logout' ? (
+                  <Button
+                    shape="circle"
+                    type={current === item.key ? 'primary' : 'default'}
+                    icon={item.icon}
+                    onClick={showLogoutConfirm}
+                  ></Button>
+                ) : (
+                  <Link to={item.key}>
+                    <Button
+                      shape="circle"
+                      type={current === item.key ? 'primary' : 'default'}
+                      icon={item.icon}
+                    ></Button>
+                  </Link>
+                )}
+              </li>
+            ),
+        )}
+      </ul>
       <Modal
         title="Confirm Logout"
         open={isModalOpen}

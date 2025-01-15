@@ -14,3 +14,22 @@
   max-width: 100%;
   width: 200px;
 }
+
+.desktopMenu {
+  display: none;
+
+  @media (min-width: 768px) {
+    display: flex;
+  }
+}
+
+.mobileMenu {
+  display: flex;
+  list-style: none;
+  gap: 1rem;
+  margin: 0;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+}
