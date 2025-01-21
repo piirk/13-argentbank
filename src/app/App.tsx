@@ -21,6 +21,7 @@ const App = () => {
         components: {
           Card: {
             bodyPadding: 8,
+            headerPadding: 8,
           },
         },
       }}
