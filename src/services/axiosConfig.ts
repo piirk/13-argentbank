@@ -1,4 +1,6 @@
 import axios from 'axios'
+import { store } from '@redux/store'
+import { logout } from '@redux/slices/authSlice'
 
 const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
@@ -35,6 +37,13 @@ axiosInstance.interceptors.response.use(
 
         const errorMessage =
           errorMessages[error.response.status] || 'An error occurred'
+
+        // If the error is 401, log the user out
+        if (error.response.status === 401) {
+          store.dispatch(logout())
+          window.location.href = '/login'
+        }
+
         return Promise.reject(errorMessage)
       } else if (error.request) {
         return Promise.reject('Network error. Unable to reach the server.')
