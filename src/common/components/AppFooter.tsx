@@ -5,10 +5,8 @@ const { Text } = Typography
 
 const AppFooter = () => {
   return (
-    <Footer>
-      <Text style={{ textAlign: 'center' }}>
-        Copyright ©{new Date().getFullYear()} Argent Bank
-      </Text>
+    <Footer style={{ textAlign: 'center' }}>
+      <Text>Copyright ©{new Date().getFullYear()} Argent Bank</Text>
     </Footer>
   )
 }
