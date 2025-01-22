@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { store } from '@redux/store'
 import { logout } from '@redux/slices/authSlice'
+import { useNavigate } from 'react-router-dom'
 
 const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
@@ -38,10 +39,11 @@ axiosInstance.interceptors.response.use(
         const errorMessage =
           errorMessages[error.response.status] || 'An error occurred'
 
-        // If the error is 401, log the user out
+        // If the error is 401, log the user out and redirect to login
         if (error.response.status === 401) {
+          const navigate = useNavigate()
           store.dispatch(logout())
-          window.location.href = '/login'
+          navigate('/login', { replace: true })
         }
 
         return Promise.reject(errorMessage)
